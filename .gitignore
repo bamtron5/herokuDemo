@@ -1,0 +1,11 @@
+/bower_components
+/typings
+/node_modules
+*.js
+.env
+npm-debug.log
+.vscode
+tsconfig.json
+.editorconfig
+.travisAnswers
+.nvmrc
