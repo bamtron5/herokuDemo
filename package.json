@@ -5,6 +5,8 @@
   "scripts": {
     "start": "node ./bin/www"
   },
+  "preinstall": "npm i bower -g",
+  "postinstall": "bower i",
   "engines": {
    "node": "6.9.1"
   },
