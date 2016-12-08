@@ -14,7 +14,7 @@ namespace imdbclone.Controllers {
 
       constructor(
         currentUser: ng.ui.IResolvedState,
-        private userService: imdbclone.Services.UserService,
+        private UserService: imdbclone.Services.UserService,
         private $cookies: ng.cookies.ICookiesService,
         private $state: ng.ui.IStateService
       ) {

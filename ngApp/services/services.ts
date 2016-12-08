@@ -36,7 +36,7 @@ namespace imdbclone.Services {
       }
     }
 
-    angular.module('imdbclone').service('userService', UserService);
+    angular.module('imdbclone').service('UserService', UserService);
 
     /*Movie Service =================================*/
 

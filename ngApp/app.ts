@@ -23,9 +23,9 @@ namespace imdbclone {
           //  // then you can go to that state.
           // $state.go('contacts');
           resolve: {
-            currentUser: ['userService', '$cookies', function(userService, $cookies) {
+            currentUser: ['UserService', '$cookies', function(UserService, $cookies) {
               if($cookies.get('token')) {
-                return userService.getCurrentUser();
+                return UserService.getCurrentUser();
               } else {
                 return null;
               }
@@ -102,7 +102,7 @@ namespace imdbclone {
     }])
 
     .run([
-      '$rootScope', '$location', 'movieService', 'userService',
+      '$rootScope', '$location', 'movieService', 'UserService',
       function($rootScope, $location, movieService, UserService) {
       // Redirect to login if route requires auth and you're not logged in
       $rootScope.$on('$stateChangeStart', function (event, next) {
