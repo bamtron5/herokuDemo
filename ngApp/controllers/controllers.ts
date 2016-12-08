@@ -1,6 +1,7 @@
 namespace imdbclone.Controllers {
     export class MainController {
       public currentUser;
+      public self = this;
 
       logout() {
         this.UserService.logout().then((res) => {
@@ -25,12 +26,11 @@ namespace imdbclone.Controllers {
     export class UserController {
       public user;
       public currentUser;
-      public CookieService;
       public isLoggedIn;
 
       public login(user) {
         this.UserService.login(user).then((res) => {
-          this.CookieService.put('token', res.token);
+          this.$cookies.put('token', res.token);
           this.$state.transitionTo('main.home', null, {reload: true, notify:true});
         }).catch((err) => {
           alert('Bunk login, please try again.');
@@ -48,7 +48,7 @@ namespace imdbclone.Controllers {
 
       public logout() {
         this.UserService.logout().then((res) => {
-          this.CookieService.remove('token');
+          this.$cookies.remove('token');
           this.$state.transitionTo('main.home', null, {reload: true, notify:true});
         }).catch((err) => {
           //TODO error handler
@@ -64,9 +64,6 @@ namespace imdbclone.Controllers {
         private $cookies: ng.cookies.ICookiesService,
         private $scope: ng.IScope
       ) {
-        this.CookieService = $cookies;
-        this.$scope = $scope;
-        // this.isLoggedIn = $state.data.currentUser
       }
     }
 
