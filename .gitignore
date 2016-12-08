@@ -8,3 +8,6 @@ npm-debug.log
 .editorconfig
 .travisAnswers
 .nvmrc
+!*.spec.js
+!karma.conf.js
+coverage

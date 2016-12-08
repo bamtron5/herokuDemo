@@ -25,7 +25,6 @@ namespace imdbclone.Controllers {
     export class UserController {
       public user;
       public currentUser;
-      public UserService;
       public CookieService;
       public isLoggedIn;
 
@@ -39,7 +38,7 @@ namespace imdbclone.Controllers {
       }
 
       public register(user) {
-        this.userService.register(user).then((res) => {
+        this.UserService.register(user).then((res) => {
           this.$state.go('main.login');
         }).catch((err) => {
           console.log(err);
@@ -59,13 +58,14 @@ namespace imdbclone.Controllers {
       }
 
       constructor(
-        private userService:imdbclone.Services.UserService,
+        private UserService:imdbclone.Services.UserService,
         private $state: ng.ui.IStateService,
         private $rootScope: ng.IRootScopeService,
-        private $cookies: ng.cookies.ICookiesService
+        private $cookies: ng.cookies.ICookiesService,
+        private $scope: ng.IScope
       ) {
-        this.UserService = userService;
         this.CookieService = $cookies;
+        this.$scope = $scope;
         // this.isLoggedIn = $state.data.currentUser
       }
     }

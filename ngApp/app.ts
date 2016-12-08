@@ -102,8 +102,8 @@ namespace imdbclone {
     }])
 
     .run([
-      '$rootScope', '$location', 'movieService', 'auth', 'userService',
-      function($rootScope, $location, movieService, Auth, UserService) {
+      '$rootScope', '$location', 'movieService', 'userService',
+      function($rootScope, $location, movieService, UserService) {
       // Redirect to login if route requires auth and you're not logged in
       $rootScope.$on('$stateChangeStart', function (event, next) {
         console.log(`GOING TO: ${next.url}`);
