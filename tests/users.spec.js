@@ -58,7 +58,7 @@ describe('Users service', function() {
       ctrl.login();
     });
 
-    it('UserService.login should be called when ctrl.login is called', function() {
+    it('should call UserService.login', function() {
       expect(ctrl.UserService.login).toHaveBeenCalled();
     });
 
@@ -66,7 +66,7 @@ describe('Users service', function() {
 
     });
 
-    xit('state should go home', function () {
+    xit('state should set state to home', function () {
 
     });
   })

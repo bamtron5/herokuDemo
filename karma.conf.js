@@ -23,9 +23,7 @@ module.exports = function(config) {
       'ngApp/app.js',
       'ngApp/services/*.js',
       'ngApp/controllers/*.js',
-      'tests/*.spec.js',
-      'tests',
-      '*.spec.js'
+      'tests/*.spec.js'
     ],
 
 

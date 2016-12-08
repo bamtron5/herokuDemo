@@ -3,7 +3,7 @@ namespace imdbclone.Controllers {
       public currentUser;
 
       logout() {
-        this.userService.logout().then((res) => {
+        this.UserService.logout().then((res) => {
           this.$cookies.remove('token');
           this.$state.transitionTo('main.home', null, {reload: true, notify:true});
         }).catch((err) => {
