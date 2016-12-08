@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "preinstall": "npm i bower tsc -g",
-    "postinstall": "bower i & tsc"
+    "preinstall": "npm i bower tsc@2.0.10 -g",
+    "postinstall": "bower i & tsc --listFiles"
   },
   "engines": {
     "node": "6.9.1"
