@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "preinstall": "npm i bower tsc@2.0.10 -g",
+    "preinstall": "npm i bower tsc@2.0.1 -g",
     "postinstall": "bower i & tsc --listFiles"
   },
   "engines": {
