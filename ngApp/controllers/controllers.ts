@@ -19,6 +19,11 @@ namespace imdbclone.Controllers {
         private $cookies: ng.cookies.ICookiesService,
         private $state: ng.ui.IStateService
       ) {
+        this.UserService.getCurrentUser().then((user) => {
+          $state.current.data.user = user;
+        }).catch(() => {
+          throw new Error('Could not retrieve current user');
+        })
         this.currentUser = currentUser;
       }
     }

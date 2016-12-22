@@ -83,6 +83,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(passport.initialize());
+app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //pathing
@@ -103,6 +104,7 @@ app.use('/api', require('./api/genres'));
 app.use('/api', require('./api/guestbook'));
 app.use('/api', require('./api/deepThought'));
 app.use('/api', require('./api/users'));
+
 
  /**
  *   --==CRUD ERROR HANDLING==--

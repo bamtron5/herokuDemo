@@ -101,27 +101,34 @@ describe('Users Controller', function() {
       //spy on $cookie.put and return nothing
       spyOn(ctrl.$cookies, 'put').and.returnValue({});
 
+      // spyOn(alert);
       //actually call spy
       ctrl.login(creds);
 
-      //resolve login promise
-      deferred.resolve({ token: token });
     });
 
     it('should call UserService.login', function() {
       expect(ctrl.UserService.login).toHaveBeenCalled();
     });
 
-    it('should call $cookies.put', function () {
+    it('should call $cookies.put', function() {
       //NOTE $httpBackend will call after UserService.login resolves promise
+      deferred.resolve({ token: token });
       $httpBackend.flush();
       expect(ctrl.$cookies.put).toHaveBeenCalled();
     });
 
-    it('state should set state to home', function () {
+    it('state should set state to home', function() {
+      deferred.resolve({ token: token });
       scope.$apply();
       $httpBackend.flush();
       expect($state.current.name).toBe('main.home');
+    });
+
+    xit('should run alert on error', function() {
+      deferred.reject();
+      $httpBackend.flush();
+      // expect(alert).toHaveBeenCalled();
     });
   })
 });
