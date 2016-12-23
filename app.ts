@@ -60,11 +60,11 @@ app.use(session({
 let dbc = mongoose.connect(process.env.MONGO_URI);
 mongoose.connection.on('connected', () => {
   Permission.setPermission(dbc);
+  require('./models/Seed.js');
 });
 
 //report DB error
 mongoose.connection.on('error', (err) => {
-
   /**
    * TODO errorHandler
    */

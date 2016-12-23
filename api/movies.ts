@@ -31,7 +31,7 @@ router.get('/movies', methods.isAuthenticated, function(req, res, next) {
 /* GET movie by id */
 router.get('/movies/:id', function(req, res, next) {
     Movie.findOne({ _id: req.params.id }).then((movies) => {
-        console.log(movies)
+        // console.log(movies)
         res.json(movies);
     }).catch((err) => {
         console.log('NOOOOO', err);

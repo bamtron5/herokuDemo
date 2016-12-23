@@ -42,7 +42,7 @@ router.post('/Register', function(req, res, next) {
 
 router.post('/Login/Local', function(req, res, next) {
   if(!req.body.username || !req.body.password){
-    console.log(req.body);
+    // console.log(req.body);
     return res.status(400).send("Please fill out every field");
   }
   passport.authenticate('local', function(err, user, info) {
