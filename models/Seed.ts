@@ -1,6 +1,7 @@
 import NbaSeries from './NbaSeries';
 import * as mongoose from 'mongoose';
 import * as _ from 'lodash';
+import * as colors from 'colors';
 let oneAtATime = require('promise-one-at-a-time'); //promises that go one at a time
 let keys = Object.keys(NbaSeries);
 
@@ -9,7 +10,7 @@ mongoose.connection.db.dropDatabase();
 
 //your models
 // team, game, nbaSeries
-console.log('seed keys', keys);
+console.log('seed keys\n'.yellow, pj(keys));
 
 //block vars when promises resolve
 let teams = null;
@@ -51,21 +52,21 @@ function createSeries() {
 let promiseQue = [
   () => new Promise((resolve, reject) => {
     createTeams().then((result) => {
-      console.log('i got a list of teams: ', result);
+      console.log('i got a list of teams\n'.yellow, pj(result));
       teams = result;
       resolve(result);
     }).catch((err) => { throw new Error(err) });
   }),
   () => new Promise((resolve, reject) => {
     createGames().then((result) => {
-      console.log('then a list of games: ', result);
+      console.log('then a list of games\n'.yellow, pj(result));
       games = result;
       resolve(result);
     }).catch((err) => { throw new Error(err) });
   }),
   () => new Promise((resolve, reject) => {
     createSeries().then((result) => {
-      console.log('then a list of series: ', result);
+      console.log('then a list of series\n'.yellow, pj(result));
       series = result;
       resolve(result);
     }).catch((err) => { throw new Error(err) });
@@ -74,14 +75,17 @@ let promiseQue = [
 
 //consider this the `INIT` of the script
 oneAtATime(promiseQue).then((result) => {
-  console.log('done seeding a list of series');
+  console.log('\n-==seed script is finished==-\n'.yellow);
   //an example of a populated one to many
   NbaSeries.nbaSeries.findOne({_id: series[0]._id})
     .populate('games')
     .exec((err, val) => {
       if (err) throw new Error(err);
-      console.log('populated one to many of a series', val);
-      console.log('the away team is: ', val.games[0].awayTeam);
-      console.log('the home team is: ', val.games[0].homeTeam);
+      console.log('populated one to many of a series\n'.yellow, pj(val));
     });
 }).catch((err) => { throw new Error(err) });
+
+//readable json
+function pj(data) {
+  return '\n' + JSON.stringify(data, null, 2).green + '\n';
+}
