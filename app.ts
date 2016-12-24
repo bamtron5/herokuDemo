@@ -60,7 +60,11 @@ app.use(session({
 let dbc = mongoose.connect(process.env.MONGO_URI);
 mongoose.connection.on('connected', () => {
   Permission.setPermission(dbc);
-  require('./models/Seed.js');
+
+  //only seed in development
+  if (app.get('env') === 'development') {
+    require('./models/Seed.js');
+  }
 });
 
 //report DB error
