@@ -114,9 +114,8 @@ oneAtATime(promiseQue).then((result) => {
     .exec((err, aSeries) => {
       if (err) throw new Error(err);
       console.log('populated one to many of a series\n'.yellow, pj(aSeries));
-    })
-    .catch((err) => { throw new Error(err) });
-    
+    });
+
 }).catch((err) => { throw new Error(err) });
 
 //readable json
