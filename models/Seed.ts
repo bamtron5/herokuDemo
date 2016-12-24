@@ -77,7 +77,7 @@ oneAtATime(promiseQue).then((result) => {
   console.log('done seeding a list of series');
   //an example of a populated one to many
   NbaSeries.nbaSeries.findOne({_id: series[0]._id})
-    .populate('games teamOne teamTwo')
+    .populate('games')
     .exec((err, val) => {
       if (err) throw new Error(err);
       console.log('populated one to many of a series', val);
