@@ -68,7 +68,7 @@ function createGames() {
 function createSeries() {
   return Promise.all([
     NbaSeries.nbaSeries.create({
-      games: _.map(games, (game) => game)
+      games: _.map(games, (game: mongoose.Document) => game._id)
     })
   ]);
 }
@@ -100,15 +100,23 @@ let promiseQue = [
 //consider this the `INIT` of the script
 oneAtATime(promiseQue).then((result) => {
   console.log('\n-==seed script is finished==-\n'.yellow);
+
   //an example of a populated one to many
+  const firstSeries = series[0]._id;
   NbaSeries.nbaSeries
-    .findOne({_id: series[0]._id})
-    .populate('games.homeTeam games.awayTeam')
-    .exec((err, val) => {
+    .findOne(firstSeries)
+    .populate({
+      path: 'games',
+      populate: {
+        path: 'homeTeam awayTeam'
+      }
+    })
+    .exec((err, aSeries) => {
       if (err) throw new Error(err);
-      console.log('populated one to many of a series\n'.yellow, pj(val));
+      console.log('populated one to many of a series\n'.yellow, pj(aSeries));
     })
     .catch((err) => { throw new Error(err) });
+    
 }).catch((err) => { throw new Error(err) });
 
 //readable json

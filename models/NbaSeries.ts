@@ -17,24 +17,20 @@ export interface INBASeries extends mongoose.Document {
   games: Array<IGame>
 }
 
-const teamConst = {
+let teamSchema = new mongoose.Schema({
   name: {type: String, unique: true},
   logo: String
-};
+});
 
-let teamSchema = new mongoose.Schema(teamConst);
-
-const gameConst = {
+let gameSchema = new mongoose.Schema({
   homeTeam: {type: mongoose.Schema.Types.ObjectId, ref: 'Team'},
   awayTeam: {type: mongoose.Schema.Types.ObjectId, ref: 'Team'},
   homeScore: Number,
   awayScore: Number
-};
-
-let gameSchema = new mongoose.Schema(gameConst);
+});
 
 let nbaSeriesSchema = new mongoose.Schema({
-  games: [gameConst]
+  games: [{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}]
 });
 
 const models = {
