@@ -25,8 +25,8 @@ const teamConst = {
 let teamSchema = new mongoose.Schema(teamConst);
 
 const gameConst = {
-  homeTeam: teamConst,
-  awayTeam: teamConst,
+  homeTeam: {type: mongoose.Schema.Types.ObjectId, ref: 'Team'},
+  awayTeam: {type: mongoose.Schema.Types.ObjectId, ref: 'Team'},
   homeScore: Number,
   awayScore: Number
 };

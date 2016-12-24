@@ -33,10 +33,34 @@ function createTeams() {
 function createGames() {
   return Promise.all([
     NbaSeries.game.create({
-      homeTeam: teams[0],
-      awayTeam: teams[1],
-      homeScore: 110,
+      homeTeam: teams[0]._id,
+      awayTeam: teams[1]._id,
+      homeScore: 105,
       awayScore: 99
+    }),
+    NbaSeries.game.create({
+      homeTeam: teams[0]._id,
+      awayTeam: teams[1]._id,
+      homeScore: 105,
+      awayScore: 106
+    }),
+    NbaSeries.game.create({
+      homeTeam: teams[1]._id,
+      awayTeam: teams[0]._id,
+      homeScore: 106,
+      awayScore: 121
+    }),
+    NbaSeries.game.create({
+      homeTeam: teams[1]._id,
+      awayTeam: teams[0]._id,
+      homeScore: 109,
+      awayScore: 112
+    }),
+    NbaSeries.game.create({
+      homeTeam: teams[1]._id,
+      awayTeam: teams[0]._id,
+      homeScore: 90,
+      awayScore: 92
     })
   ])
 }
@@ -79,7 +103,7 @@ oneAtATime(promiseQue).then((result) => {
   //an example of a populated one to many
   NbaSeries.nbaSeries
     .findOne({_id: series[0]._id})
-    .populate('games')
+    .populate('games.homeTeam games.awayTeam')
     .exec((err, val) => {
       if (err) throw new Error(err);
       console.log('populated one to many of a series\n'.yellow, pj(val));
