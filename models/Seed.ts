@@ -72,6 +72,7 @@ let promiseQue = [
   })
 ];
 
+//consider this the `INIT` of the script
 oneAtATime(promiseQue).then((result) => {
   console.log('done seeding a list of series');
   //an example of a populated one to many
